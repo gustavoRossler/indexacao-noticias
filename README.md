@@ -1,5 +1,11 @@
 ## Comandos no console para rodar o projeto
 
+Na pasta principal do projeto você encontrará um arquivo .env com as configurações do projeto.
+
+Está preenchido com um template da configuração.
+
+Você pode alterar o nome de usuário dos bancos de dados, senhas, e até mesmo as portas de acesso caso necessário.
+
 ### 1 - Clonar repositório
 ```bash
 git clone https://github.com/gustavoRossler/indexacao-noticias.git
