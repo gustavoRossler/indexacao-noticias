@@ -23,11 +23,15 @@ class NewsController extends Controller
 
     public function getList()
     {
-        $importer = new \App\Http\Controllers\ImporterController();
-        $documents = $importer->getElasticsearchIndexDocuments();
-        return view('news/index', [
-            'documents' => $documents
-        ]);
+        try {
+            $importer = new \App\Http\Controllers\ImporterController();
+            $documents = $importer->getElasticsearchIndexDocuments();
+            return view('news/index', [
+                'documents' => $documents
+            ]);
+        } catch (\Exception $e) {
+            return view('news/index');
+        }
     }
 
     public function uploadFile(Request $request)

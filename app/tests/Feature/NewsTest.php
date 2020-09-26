@@ -43,7 +43,7 @@ class NewsTest extends TestCase
      */
     public function test_can_upload_file_to_api()
     {
-        $uploadedFile = new UploadedFile(storage_path('app/public/test/noticias.json'), 'test-file.json', 'application/json', null, TRUE);
+        $uploadedFile = new UploadedFile(storage_path('test/noticias.json'), 'test-file.json', 'application/json', null, TRUE);
 
         $response = $this->json('POST', '/api/upload-file', [
             'file' => $uploadedFile,
@@ -83,7 +83,7 @@ class NewsTest extends TestCase
      */
     public function test_invalid_json_data()
     {
-        $uploadedFile = new UploadedFile(storage_path('app/public/test/noticias_inv.json'), 'test-file.json', 'application/json', null, TRUE);
+        $uploadedFile = new UploadedFile(storage_path('test/noticias_inv.json'), 'test-file.json', 'application/json', null, TRUE);
 
         $response = $this->json('POST', '/api/upload-file', [
             'file' => $uploadedFile,
