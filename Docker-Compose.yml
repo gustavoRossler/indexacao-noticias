@@ -22,6 +22,11 @@ services:
             - DB_DATABASE=${PGSQL_DB_DATABASE}
             - DB_USERNAME=${PGSQL_DB_USERNAME}
             - DB_PASSWORD=${PGSQL_DB_PASSWORD}
+            - ELASTICSEARCH_HOST=elastic
+            - ELASTICSEARCH_PORT=${ELASTICSEARCH_PORT}
+            - ELASTICSEARCH_SCHEME=${ELASTICSEARCH_SCHEME}
+            - ELASTICSEARCH_USERNAME=${ELASTICSEARCH_USERNAME}
+            - ELASTICSEARCH_PASSWORD=${ELASTICSEARCH_PASSWORD}
     # NgInx
     web: 
         build: 
@@ -51,7 +56,7 @@ services:
     elastic:
         env_file: 
             - .env
-        image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
+        image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTICSEARCH_VERSION}
         ports:
             - 9200:9200
         depends_on: 
@@ -60,9 +65,9 @@ services:
             - bootstrap.memory_lock=true
             - discovery.type=single-node
             - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
-            - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
-            - ELASTIC_USERNAME=${ELASTIC_USERNAME}
-            - xpack.security.enabled=${ELASTIC_SECURITY}
+            - ELASTIC_PASSWORD=${ELASTICSEARCH_PASSWORD}
+            - ELASTIC_USERNAME=${ELASTICSEARCH_USERNAME}
+            - xpack.security.enabled=${ELASTICSEARCH_SECURITY}
 volumes:
     dbdata: 
     elasticdata:
