@@ -1,0 +1,68 @@
+version: "3.7"
+
+services:
+    # App (PHP Laravel)
+    app:
+        env_file: 
+            - .env
+        container_name: app
+        build: 
+            context: ./app
+            dockerfile: app.dockerfile
+        working_dir: /var/www
+        volumes: 
+            - ./app:/var/www
+        environment: 
+            CONTAINER_ROLE: app
+        depends_on: 
+            - database
+        environment: 
+            - DB_PORT=${PGSQL_DB_PORT}
+            - DB_HOST=database
+            - DB_DATABASE=${PGSQL_DB_DATABASE}
+            - DB_USERNAME=${PGSQL_DB_USERNAME}
+            - DB_PASSWORD=${PGSQL_DB_PASSWORD}
+    # NgInx
+    web: 
+        build: 
+            context: ./web
+            dockerfile: web.dockerfile
+        working_dir: /var/www
+        volumes: 
+            - ./app:/var/www
+        depends_on: 
+            - app
+        ports: 
+            - 8080:80
+    # Database Postgresql
+    database:
+        env_file: 
+            - .env
+        image: postgres
+        volumes: 
+            - dbdata:/var/lib/postgresql/data
+        environment: 
+            POSTGRES_USER: ${PGSQL_DB_USERNAME}
+            POSTGRES_DB: ${PGSQL_DB_DATABASE}
+            POSTGRES_PASSWORD: ${PGSQL_DB_PASSWORD}
+        ports:
+            - "5432:5432"
+    # Elasticsearch
+    elastic:
+        env_file: 
+            - .env
+        image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
+        ports:
+            - 9200:9200
+        depends_on: 
+            - database
+        environment: 
+            - bootstrap.memory_lock=true
+            - discovery.type=single-node
+            - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+            - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+            - ELASTIC_USERNAME=${ELASTIC_USERNAME}
+            - xpack.security.enabled=${ELASTIC_SECURITY}
+volumes:
+    dbdata: 
+    elasticdata:
