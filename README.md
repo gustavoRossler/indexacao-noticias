@@ -1,23 +1,23 @@
 ## Comandos no console para rodar o projeto
 
-### Clonar repositório
+### 1 - Clonar repositório
 ```bash
 git clone https://github.com/gustavoRossler/indexacao-noticias.git
 ```
 
-### Acessar o diretório do projeto clonado
+### 2 - Acessar o diretório do projeto clonado
 ```bash
 cd indexacao-noticias
 ```
 (Sendo indexacao-noticias o nome da pasta criada)
 
-### Subir os containers 
+### 3 - Subir os containers 
 ```bash
 docker-compose up -d
 ```
 (O SO pode pedir permissão para acessar os diretórios dos volumes criados nessa etapa)
 
-### Rodar o composer para instalar os módulos PHP e scripts necessários
+### 4 - Rodar o composer para instalar os módulos PHP e scripts necessários
 ```bash
 docker-compose exec app composer install
 docker-compose exec app composer run-script post-root-package-install
