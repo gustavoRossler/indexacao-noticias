@@ -47,11 +47,11 @@ Método POST
 Parâmetros:
 - file (tipo: file, aceita: arquivos .json)
 
+Aceita arquivos tipo Json, com o template do arquivo enviado nas instruções.
 
 
 ----------------------------------------------------------------------------
 
-Aceita arquivos tipo Json, com o template do arquivo enviado nas instruções.
 
 Adicionei uma rota na mesma aplicação para importar os dados para o elasticsearch.
 
