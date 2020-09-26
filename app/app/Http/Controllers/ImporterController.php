@@ -46,7 +46,6 @@ class ImporterController extends Controller
         ]);
 
         $docs = [];
-        dd($response);
 
         if (!isset($response['hits'])) {
             return [];
