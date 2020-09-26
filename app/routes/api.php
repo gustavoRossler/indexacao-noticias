@@ -15,3 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/upload-file', '\App\Http\Controllers\NewsController@uploadFile');
+
+Route::prefix('/importer')->group(function () {
+    Route::get('/test-connection', '\App\Http\Controllers\ImporterController@testElasticsearchConnection');
+    Route::get('/index-stats', '\App\Http\Controllers\ImporterController@getElasticsearchIndexStatus');
+    Route::get('/index-documents', '\App\Http\Controllers\ImporterController@listElasticsearchIndexDocuments');
+    Route::get('/nodes-stats', '\App\Http\Controllers\ImporterController@getElasticsearchNodesStats');
+    Route::get('/cluster-stats', '\App\Http\Controllers\ImporterController@getElasticsearchClusterStats');
+    Route::get('/delete-index', '\App\Http\Controllers\ImporterController@deleteElasticsearchIndex');
+    Route::get('/import-data', '\App\Http\Controllers\ImporterController@importData');
+});
