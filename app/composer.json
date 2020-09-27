@@ -59,6 +59,12 @@
             "@php artisan key:generate --ansi",
             "@php artisan migrate:install --ansi",
             "@php artisan migrate --ansi"
+        ],
+        "post-install-cmd": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php artisan key:generate --ansi",
+            "@php artisan migrate:install --ansi",
+            "@php artisan migrate --ansi"
         ]
     }
 }

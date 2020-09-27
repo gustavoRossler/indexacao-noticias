@@ -17,6 +17,7 @@ services:
         depends_on: 
             - database
         environment: 
+            - DB_CONNECTION=pgsql
             - DB_PORT=${PGSQL_DB_PORT}
             - DB_HOST=database
             - DB_DATABASE=${PGSQL_DB_DATABASE}

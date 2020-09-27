@@ -26,8 +26,6 @@ docker-compose up -d
 ### 4 - Rodar o composer para instalar os módulos PHP e scripts necessários
 ```bash
 docker-compose exec app composer install
-docker-compose exec app composer run-script post-root-package-install
-docker-compose exec app composer run-script post-create-project-cmd
 ```
 
 ### Opcional
