@@ -6,6 +6,8 @@ Está preenchido com um template da configuração.
 
 Você pode alterar o nome de usuário dos bancos de dados, senhas, e até mesmo as portas de acesso caso necessário.
 
+As alterações devem ser feitas antes de subir os containers.
+
 ### 1 - Clonar repositório
 ```bash
 git clone https://github.com/gustavoRossler/indexacao-noticias.git
